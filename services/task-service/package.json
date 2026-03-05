@@ -1,0 +1,15 @@
+{
+  "name": "task-service",
+  "version": "1.0.0",
+  "description": "Task management microservice – handles task CRUD per user",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "test": "jest --coverage",
+    "test:unit": "jest tests/unit",
+    "test:integration": "jest tests/integration"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

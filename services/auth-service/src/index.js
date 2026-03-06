@@ -53,6 +53,21 @@ app.post("/auth/login", async (req, res) => {
   }
 });
 
+app.get("/auth/verify", (req, res) => {
+  const authHeader = req.headers.authorization;
+  if (!authHeader) {
+    return res.status(401).json({ message: "Unauthorized" });
+  }
+  const token = authHeader.split(" ")[1];
+  try {
+    const decoded = jwt.verify(token, "supersecretkey");
+    return res
+      .status(200)
+      .json({ message: "User is authenticated", userId: decoded.userId });
+  } catch (error) {
+    return res.status(403).json({ message: "Unauthorized" });
+  }
+});
 app.listen(3001, () => {
   console.log("Server started on port 3001");
 });

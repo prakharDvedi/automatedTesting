@@ -7,7 +7,7 @@
 
 const express = require("express");
 const app = express();
-const { register, login, verify } = require("./controllers/authController");
+const { register, login, verify } = require("./controllers/authcontroller");
 
 app.use(express.json());
 

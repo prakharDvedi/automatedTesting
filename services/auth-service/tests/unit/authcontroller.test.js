@@ -7,6 +7,7 @@ const {
   users,
 } = require("../../src/controllers/authcontroller");
 
+const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 
 describe("auth controller - REGISTER", () => {
@@ -126,6 +127,56 @@ describe("auth controller - LOGIN", () => {
     expect(mockRes.status).toHaveBeenCalledWith(400);
     expect(mockRes.json).toHaveBeenCalledWith({
       message: "Invalid credentials",
+    });
+  });
+});
+
+describe("auth controller - VERIFY", () => {
+  beforeEach(() => {
+    users.length = 0;
+  });
+
+  it("should return 200 if verified", async () => {
+    const validToken = jwt.sign({ userId: "123" }, "supersecretkey", {
+      expiresIn: "1h",
+    });
+    const mockReq = {
+      headers: {
+        authorization: `Bearer ${validToken}`,
+      },
+    };
+
+    const mockRes = {
+      status: jest.fn().mockReturnThis(),
+      json: jest.fn(),
+    };
+
+    await verify(mockReq, mockRes);
+
+    expect(mockRes.status).toHaveBeenCalledWith(200);
+    expect(mockRes.json).toHaveBeenCalledWith({
+      message: "User is authenticated",
+      userId: "123",
+    });
+  });
+
+  it("should return 403 if invalid or no token", async () => {
+    const mockReq = {
+      headers: {
+        authorization: "Bearer invalidtoken",
+      },
+    };
+
+    const mockRes = {
+      status: jest.fn().mockReturnThis(),
+      json: jest.fn(),
+    };
+
+    await verify(mockReq, mockRes);
+
+    expect(mockRes.status).toHaveBeenCalledWith(403);
+    expect(mockRes.json).toHaveBeenCalledWith({
+      message: "Unauthorized",
     });
   });
 });

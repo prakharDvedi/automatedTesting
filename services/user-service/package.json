@@ -10,6 +10,11 @@
     "test:unit": "jest tests/unit",
     "test:integration": "jest tests/integration"
   },
-  "dependencies": {},
-  "devDependencies": {}
+  "dependencies": {
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
 }

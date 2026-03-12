@@ -11,6 +11,11 @@ const app = express();
 const authMiddleware = require("./middleware/authMiddleware");
 
 app.use(express.json());
+// Add this to index.js
+const { getProfile, updateProfile } = require("./controllers/userController");
+
+app.get("/users/me", authMiddleware, getProfile);
+app.put("/users/me", authMiddleware, updateProfile);
 
 app.get("/", (req, res) => {
   res.send("User service is running");

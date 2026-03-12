@@ -3,8 +3,8 @@
 const users = [];
 
 const getProfile = (req, res) => {
-  const userId = req.params.id;
-  const profile = users.find((user) => user.id === userId);
+  const userId = req.userId;
+  const profile = users.find((user) => user.userId === userId);
   if (!profile) {
     return res.status(404).json({ message: "User not found" });
   }
@@ -12,17 +12,17 @@ const getProfile = (req, res) => {
 };
 
 const updateProfile = (req, res) => {
-  const userId = req.params.id;
+  const userId = req.userId;
   const { name, email } = req.body;
-  const profile = users.find((user) => user.id === userId);
+  const profile = users.findIndex((user) => user.userId === userId);
   if (profile === -1) {
     const newProfile = { userId, name, email };
     users.push(newProfile);
     return res.status(201).json(newProfile);
   } else {
-    profile.name = name;
-    profile.email = email;
-    return res.status(200).json(profile);
+    users[profile].name = name;
+    users[profile].email = email;
+    return res.status(200).json(users[profile]);
   }
 };
 

@@ -52,7 +52,7 @@ describe("auth controller - put", () => {
       userId: "123",
       password: "testpassword",
     });
-    const req = {
+    const mockreq = {
       userId: "123",
       body: {
         name: "test",
@@ -60,12 +60,30 @@ describe("auth controller - put", () => {
         password: "testpassword",
       },
     };
-    const res = {
+    const mockres = {
       status: jest.fn().mockReturnThis(),
       json: jest.fn(),
     };
-    await updateProfile(req, res);
-    expect(res.status).toHaveBeenCalledWith(200);
-    expect(res.json).toHaveBeenCalledWith(users[0]);
+    await updateProfile(mockreq, mockres);
+    expect(mockres.status).toHaveBeenCalledWith(200);
+    expect(mockres.json).toHaveBeenCalledWith(users[0]);
+  });
+
+  it("should  create a new profile if not found and return 201", async () => {
+    const mockreq = {
+      userId: "456",
+      body: {
+        name: "test2",
+        email: "test2@gmail.com",
+        password: "testpassword2",
+      },
+    };
+    const mockres = {
+      status: jest.fn().mockReturnThis(),
+      json: jest.fn(),
+    };
+    await updateProfile(mockreq, mockres);
+    expect(mockres.status).toHaveBeenCalledWith(201);
+    expect(mockres.json).toHaveBeenCalledWith(users[0]);
   });
 });

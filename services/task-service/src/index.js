@@ -5,3 +5,15 @@
 //   POST   /tasks
 //   PUT    /tasks/:id
 //   DELETE /tasks/:id
+
+const express = require("express");
+const app = express();
+
+app.use(express.json());
+app.get("/", (req, res) => {
+  res.send("Task service is running");
+});
+
+app.listen(3003, () => {
+  console.log("Task service started on port 3003");
+});

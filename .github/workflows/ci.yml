@@ -20,7 +20,7 @@ jobs:
       - name: Install dependencies
         run: cd services/auth-service && npm install
       - name: Run Linter
-        run: cd services/auth-service && npx eslint .
+        run: cd services/auth-service && npx eslint@8 .
       - name: Run unit tests
         run: cd services/auth-service && npm run test:unit
       - name: Run integration tests
@@ -39,7 +39,7 @@ jobs:
       - name: Install dependencies
         run: cd services/user-service && npm install
       - name: Run Linter
-        run: cd services/user-service && npx eslint .
+        run: cd services/user-service && npx eslint@8 .
       - name: Run unit tests
         run: cd services/user-service && npm run test:unit
       - name: Run integration tests
@@ -58,7 +58,7 @@ jobs:
       - name: Install dependencies
         run: cd services/task-service && npm install
       - name: Run Linter
-        run: cd services/task-service && npx eslint .
+        run: cd services/task-service && npx eslint@8 .
       - name: Run unit tests
         run: cd services/task-service && npm run test:unit
       - name: Run integration tests

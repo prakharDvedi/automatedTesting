@@ -1,19 +1,29 @@
-# TODO: Define services here in Phase 5 (Dockerization)
-# Each microservice will get its own container block
-version: "3.9"
+version: '3.8'
 
 services:
-  # auth-service:
-  #   build: ./services/auth-service
-  #   ports:
-  #     - "3001:3001"
+  auth-service:
+    build:
+      context: ./services/auth-service
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+    environment:
+      - NODE_ENV=production
 
-  # user-service:
-  #   build: ./services/user-service
-  #   ports:
-  #     - "3002:3002"
+  user-service:
+    build:
+      context: ./services/user-service
+      dockerfile: Dockerfile
+    ports:
+      - "3002:3002"
+    environment:
+      - NODE_ENV=production
 
-  # task-service:
-  #   build: ./services/task-service
-  #   ports:
-  #     - "3003:3003"
+  task-service:
+    build:
+      context: ./services/task-service
+      dockerfile: Dockerfile
+    ports:
+      - "3003:3003"
+    environment:
+      - NODE_ENV=production

@@ -25,6 +25,8 @@ jobs:
         run: cd services/auth-service && npm run test:unit
       - name: Run integration tests
         run: cd services/auth-service && npm run test:integration
+      - name: Build Docker Image
+        run: cd services/auth-service && docker build -t auth-service:test .
 
   test-user-service:
     runs-on: ubuntu-latest
@@ -42,6 +44,8 @@ jobs:
         run: cd services/user-service && npm run test:unit
       - name: Run integration tests
         run: cd services/user-service && npm run test:integration
+      - name: Build Docker Image
+        run: cd services/user-service && docker build -t user-service:test .
 
   test-task-service:
     runs-on: ubuntu-latest
@@ -59,3 +63,5 @@ jobs:
         run: cd services/task-service && npm run test:unit
       - name: Run integration tests
         run: cd services/task-service && npm run test:integration
+      - name: Build Docker Image
+        run: cd services/task-service && docker build -t task-service:test .

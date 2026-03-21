@@ -21,6 +21,12 @@ app.get("/", (req, res) => {
   res.send("User service is running");
 });
 
-app.listen(3002, () => {
-  console.log("User service started on port 3002");
-});
+// only listen if not imported
+if (require.main === module) {
+  app.listen(3002, () => {
+    console.log("User service started on port 3002");
+  });
+}
+
+// export for supertest
+module.exports = app;

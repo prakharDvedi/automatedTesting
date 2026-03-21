@@ -1,6 +1,8 @@
 # Automated Test Infrastructure for Microservices
 
 A project demonstrating automated testing and CI/CD for containerized microservices.
+<img width="1455" height="661" alt="image" src="https://github.com/user-attachments/assets/236ea17a-a8bf-496f-be58-ee16911ce890" />
+
 
 ## Services
 

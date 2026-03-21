@@ -10,7 +10,7 @@ const {
   createTask,
   updateTask,
   deleteTask,
-} = require("./controllers/taskconrollers");
+} = require("./controllers/taskController");
 
 app.get("/tasks", authMiddleware, getTasks);
 app.post("/tasks", authMiddleware, createTask);

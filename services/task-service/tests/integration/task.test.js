@@ -1,7 +1,7 @@
 const request = require("supertest");
 const jwt = require("jsonwebtoken");
 const app = require("../../src/index");
-const { tasks } = require("../../src/controllers/taskconrollers");
+const { tasks } = require("../../src/controllers/taskController");
 
 describe("task service integration tests", () => {
   let token;

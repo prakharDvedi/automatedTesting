@@ -5,7 +5,7 @@ const {
   updateTask,
   deleteTask,
   tasks,
-} = require("../../src/controllers/taskconrollers");
+} = require("../../src/controllers/taskController");
 
 describe("Task Controller", () => {
   beforeEach(() => {
